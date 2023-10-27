@@ -40,11 +40,11 @@ const showMovie = async () => {
     return response.json()
   })
   
-  data?.results.map((d) =>
+  data?.results.map((movie) =>
       (output += `
               <div class="card">
-                <img class="card--avatar" src=${`https://image.tmdb.org/t/p/w500${d?.poster_path}`} alt="no poster"/>
-                <h1 class="card--title">${d?.original_title}</h1>
+                <img class="card--avatar" src=${`https://image.tmdb.org/t/p/w500${movie?.poster_path}`} alt="no poster"/>
+                <h1 class="card--title">${movie?.original_title}</h1>
               </div>
               `)
   );

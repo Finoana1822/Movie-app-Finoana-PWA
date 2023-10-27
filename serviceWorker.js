@@ -1,5 +1,4 @@
 const staticDevCoffee = "PWA";
-const url = `https://pokeapi.co/api/v2/pokemon?limit=151`;
 const toPutInCache = ["index.html", "./css/style.css"]
 const fetchData = async () => {
   let data = await fetch(url).then((data) => data.json());

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <link rel="manifest" href="manifest.json">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="images/icons/icon-72x72.png">
@@ -20,16 +20,27 @@
     <title>PWA Exercice II</title>
   </head>
   <body>
-    <main>
+    <div id="formulaire">
       <nav>
-        <h1>Movie App MaheriFinoana</h1>
+        <h1>Bienvenue</h1>
       </nav>
-      <div class="search">
-        <input type="text" id="value" placeholder="Entre le titre du film...">
-        <button id="button">Rechercher</button>
+      <div class="login">
+        <input type="text" id="valuelogin" placeholder="Entre le clé de l'api...">
+        <button id="buttonlogin">Envoyer</button>
       </div>
+    </div>
+
+    <div id="movie-app">
+      <nav style="display: flex; flex-direction: column;">
+        <h1>Movie App MaheriFinoana</h1>
+        <button id="logout">Se déconnecter</button>
+        <div class="search">
+          <input type="text" id="value" placeholder="Entre le titre du film...">
+          <button id="button">Rechercher</button>
+        </div>
+      </nav>
       <div class="container"></div>
-    </main>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>

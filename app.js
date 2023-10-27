@@ -10,21 +10,9 @@ const formulaire = document.getElementById("formulaire");
 
 // const API_KEY="f91017a8a042da0d3b251a9187da7f97"
 var API_KEY=""
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmOTEwMTdhOGEwNDJkYTBkM2IyNTFhOTE4N2RhN2Y5NyIsInN1YiI6IjY1MzRiYmM0YzhhNWFjMDBlMmI3MDQ3ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BmIpDTzM8iPA7irTZ1HjUs2fzT4tHweFnH_Bi777ws8'
-  }
-};
-logout.addEventListener('click', async () => {
-  localStorage.removeItem("apikey");
-  movieApp.style.display = "none";
-  formulaire.style.display = "flex"
-})
 
 buttonlogin.addEventListener('click', async () => {
-  fetch(`https://api.themoviedb.org/3/search/movie?query=d&api_key=${inputLogin.value}`)
+  fetch(`https://api.themoviedb.org/3/search/movie?query=harryPotter&api_key=${inputLogin.value}`)
     .then(res => res.json())
     .then(json => {
       console.log(json)
@@ -32,7 +20,7 @@ buttonlogin.addEventListener('click', async () => {
         alert("Votre clé est incorrecte")
       }
       if(json.results){
-        localStorage.setItem('apikey', inputLogin.value)
+        localStorage.setItem('key', inputLogin.value)
         window.location.reload();
         movieApp.style.display = "flex",
         formulaire.style.display = "none"
@@ -45,7 +33,7 @@ buttonlogin.addEventListener('click', async () => {
 
 const showMovie = async () => {
   let output = "";
-  const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${inputValue.value}&api_key=${API_KEY}`, options).then((response) => {
+  const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${inputValue.value}&api_key=${API_KEY}`).then((response) => {
     if(!response.ok){
       return null;
     }
@@ -65,16 +53,20 @@ const showMovie = async () => {
 
 button.addEventListener("click", showMovie);
 
-function getApiKey(){
-  const apikey = localStorage.getItem('apikey')
-  console.log(apikey)
-  if(apikey){
-    API_KEY = apikey;
+document.addEventListener("DOMContentLoaded", ()=>{
+  const key = localStorage.getItem('key')
+  if(key){
+    API_KEY = key;
     formulaire.style.display = "none";
     movieApp.style.display = "flex";
   }
-}
-document.addEventListener("DOMContentLoaded", getApiKey);
+});
+
+logout.addEventListener('click', async () => {
+  localStorage.removeItem("key");
+  movieApp.style.display = "none";
+  formulaire.style.display = "flex"
+})
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {
